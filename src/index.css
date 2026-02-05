@@ -1,0 +1,125 @@
+@import "tailwindcss";
+@import "remixicon/fonts/remixicon.css";
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/Montserrat-Regular.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/Poppins-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MouseMemoirs";
+  src: url("/MouseMemoirs-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* -------------------- */
+/*   APPLYING FONTS     */
+/* -------------------- */
+
+/* Headings use Montserrat */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Normal text uses Poppins */
+body,
+p,
+span,
+small,
+li,
+button,
+input,
+a {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Decorative text */
+.special-text {
+  font-family: "MouseMemoirs", sans-serif;
+}
+
+body {
+  background-image: url("/background.webp");
+  background-size: contain;
+}
+
+.vibrant {
+  position: relative;
+  background: rgba(255, 255, 255, 0.18); /* tint - tweak color & alpha */
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 30px;
+  padding: 1.25rem;
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%); /* Safari */
+
+  color: #fff; /* or #111 depending on tint */
+  overflow: hidden;
+}
+
+/* Subtle inner glow / highlight */
+.vibrant::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.02)
+  );
+  mix-blend-mode: overlay;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes lightFloat {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-25px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+.animate-lightFloat {
+  animation: lightFloat 8s ease-in-out infinite;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade {
+  animation: fade 0.15s ease-out;
+}
