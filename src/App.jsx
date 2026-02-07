@@ -19,6 +19,7 @@ function App() {
   return (
     <Router>
       <Routes>
+      <Route path="/" element={<LandingPage />} />
         {/* Auth routes */}
         <Route path="/device-compare/login" element={<LoginPage />} />
         <Route path="/device-compare/register" element={<RegisterPage />} />
