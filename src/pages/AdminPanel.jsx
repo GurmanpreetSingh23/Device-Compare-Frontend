@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../utils/AxiosInstance";
 import { useState } from "react";
 import Footer from "../components/Footer";
 import AdminDevicesDashboard from "../components/AdminDevicesDashboard";
@@ -10,7 +10,7 @@ function AdminPanel() {
 
   const handleLogout = async () => {
     try {
-      await axios.get("http://localhost:5000/device-compare/admin/logout", {
+      await axios.get(`/device-compare/admin/logout`, {
         withCredentials: true,
       });
       navigate("/device-compare/login");

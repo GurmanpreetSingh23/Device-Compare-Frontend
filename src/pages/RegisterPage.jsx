@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../utils/AxiosInstance";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
@@ -21,8 +21,8 @@ function RegisterPage() {
       form.password.toLowerCase().startsWith("adminpass");
 
     const apiURL = isAdmin
-      ? "http://localhost:5000/device-compare/admin/register"
-      : "http://localhost:5000/device-compare/user/register";
+      ? `/device-compare/admin/register`
+      : `/device-compare/user/register`;
 
     try {
       const res = await axios.post(apiURL, form, {

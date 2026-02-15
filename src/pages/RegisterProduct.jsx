@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "../utils/AxiosInstance";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router";
 
@@ -119,8 +119,8 @@ function RegisterProduct() {
       let data = selectedDevice === "mobile" ? mobileForm : laptopForm;
       let url =
         selectedDevice === "mobile"
-          ? "http://localhost:5000/device-compare/devices/register/mobile"
-          : "http://localhost:5000/device-compare/devices/register/laptop";
+          ? `/device-compare/devices/register/mobile`
+          : `/device-compare/devices/register/laptop`;
 
       // Console.log the exact form data being sent
       console.log("📤 Form Data Being Sent:", JSON.stringify(data, null, 2));
@@ -433,8 +433,8 @@ function RegisterProduct() {
                           label === "Discount %"
                             ? "15"
                             : label === "Star Rating"
-                            ? "4.5"
-                            : ""
+                              ? "4.5"
+                              : ""
                         }
                       />
                     </div>
@@ -463,8 +463,8 @@ function RegisterProduct() {
                           label === "RAM (GB)"
                             ? "16"
                             : label === "RAM Type"
-                            ? "DDR4"
-                            : ""
+                              ? "DDR4"
+                              : ""
                         }
                       />
                     </div>
@@ -493,10 +493,10 @@ function RegisterProduct() {
                           label === "SSD (GB)"
                             ? "512"
                             : label === "Display Size"
-                            ? '15.6"'
-                            : label === "Weight (kg)"
-                            ? "1.8"
-                            : ""
+                              ? '15.6"'
+                              : label === "Weight (kg)"
+                                ? "1.8"
+                                : ""
                         }
                       />
                     </div>
@@ -523,8 +523,8 @@ function RegisterProduct() {
                           label === "Image URL"
                             ? "https://example.com/laptop.jpg"
                             : label === "Touchscreen"
-                            ? "Yes/No"
-                            : ""
+                              ? "Yes/No"
+                              : ""
                         }
                       />
                     </div>

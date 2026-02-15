@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../utils/AxiosInstance";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import Footer from "../components/Footer";
@@ -14,10 +14,9 @@ function ProductUpdate() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/device-compare/devices/product/${id}`,
-          { withCredentials: true },
-        );
+        const res = await axios.get(`/device-compare/devices/product/${id}`, {
+          withCredentials: true,
+        });
 
         const { type, product } = res.data;
 
@@ -53,8 +52,8 @@ function ProductUpdate() {
     try {
       const url =
         type === "laptop"
-          ? "http://localhost:5000/device-compare/devices/laptop/update"
-          : "http://localhost:5000/device-compare/devices/mobile/update";
+          ? `/device-compare/devices/laptop/update`
+          : `/device-compare/devices/mobile/update`;
 
       await axios.post(url, form, { withCredentials: true });
       alert("Product updated successfully!");

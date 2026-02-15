@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../utils/AxiosInstance";
 import gsap from "gsap";
 import React, {
   useEffect,
@@ -65,7 +65,7 @@ function DevicesMenu() {
   const fetchMobiles = useCallback(async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/device-compare/devices/all-products?type=mobile",
+        `/device-compare/devices/all-products?type=mobile`,
         { withCredentials: true },
       );
       const filtered = res.data.filter((item) =>
@@ -82,7 +82,7 @@ function DevicesMenu() {
   const fetchLaptops = useCallback(async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/device-compare/devices/all-products?type=laptop",
+        `/device-compare/devices/all-products?type=laptop`,
         { withCredentials: true },
       );
       const filtered = res.data

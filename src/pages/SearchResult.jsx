@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import Header from "../components/Header";
-import axios from "axios";
+import axios from "../utils/AxiosInstance";
 
 function SearchResult() {
   const { query } = useParams();
@@ -15,9 +15,7 @@ function SearchResult() {
       try {
         setLoading(true);
         setError(null);
-        const res = await axios.get(
-          `http://localhost:5000/device-compare/devices/search/${query}`
-        );
+        const res = await axios.get(`/device-compare/devices/search/${query}`);
         setResults(res.data);
       } catch (error) {
         console.error("Error fetching search results:", error);

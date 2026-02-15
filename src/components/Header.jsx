@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../utils/AxiosInstance";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -14,7 +14,7 @@ function Header() {
     try {
       // eslint-disable-next-line no-unused-vars
       const res = await axios.get(
-        `http://localhost:5000/device-compare/devices/search/${searchText}`,
+        `/device-compare/devices/search/${searchText}`,
         { withCredentials: true },
       );
       navigate(`/device-compare/filter/products/search/${searchText}`);
@@ -27,7 +27,7 @@ function Header() {
 
   const handleLogout = async () => {
     try {
-      await axios.get("http://localhost:5000/device-compare/user/logout", {
+      await axios.get(`/device-compare/user/logout`, {
         withCredentials: true,
       });
       navigate("/device-compare/login");
@@ -67,6 +67,15 @@ function Header() {
                 Search
               </button>
             </div>
+
+            <button
+              onClick={() => navigate("/device-compare/user/account")}
+              className="hidden md:inline-block  text-blue-300 text-sm font-medium px-5 py-2 rounded-full border border-blue-500 transition-colors duration-200"
+              aria-label="Account"
+              title="Account"
+            >
+              Account
+            </button>
 
             {/* Desktop Logout Button */}
             <button
@@ -123,6 +132,13 @@ function Header() {
               Search
             </button>
           </div>
+          <button
+            onClick={() => navigate("/device-compare/user/account")}
+            className=" text-blue-300 mb-4 text-sm font-medium w-full py-2 rounded-full border border-blue-300 transition-colors duration-200"
+            aria-label="account"
+          >
+            Account
+          </button>
           {/* Mobile Logout button */}
           <button
             onClick={handleLogout}

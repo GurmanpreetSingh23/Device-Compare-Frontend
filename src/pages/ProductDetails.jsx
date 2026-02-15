@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../utils/AxiosInstance";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import Header from "../components/Header";
@@ -19,9 +19,7 @@ function ProductDetails() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/device-compare/devices/product/${id}`,
-        );
+        const res = await axios.get(`/device-compare/devices/product/${id}`);
         setData(res.data);
       } catch (error) {
         console.error("Error fetching product:", error);
@@ -41,7 +39,7 @@ function ProductDetails() {
             ? data.product.price
             : data.product.latest_price;
         const res = await axios.get(
-          `http://localhost:5000/device-compare/devices/all-products?type=${
+          `/device-compare/devices/all-products?type=${
             data.type
           }&minPrice=${priceValue - 5000}&maxPrice=${priceValue + 5000}&limit=30`,
           { withCredentials: true },

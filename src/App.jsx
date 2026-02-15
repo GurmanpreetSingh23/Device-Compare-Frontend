@@ -12,21 +12,26 @@ import AdminDescription from "./pages/AdminDescription";
 import AdminPanel from "./pages/AdminPanel";
 import ProductUpdate from "./pages/ProductUpdate";
 import RegisterProduct from "./pages/RegisterProduct";
-import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import PageNotFound from "./components/PageNotFound";
+import Account from "./components/Account";
+import UpdateAccount from "./components/UpdateAccount";
 
 function App() {
   return (
     <Router>
       <Routes>
-      <Route path="/" element={<LandingPage />} />
         {/* Auth routes */}
+        <Route path="/" element={<LandingPage />} />
         <Route path="/device-compare/login" element={<LoginPage />} />
         <Route path="/device-compare/register" element={<RegisterPage />} />
 
         {/* User routes */}
-        <Route element={<ProtectedRoute allowedRole="user" />}>
           <Route path="/device-compare" element={<LandingPage />} />
+          <Route path="/device-compare/user/account" element={<Account />} />
+          <Route
+            path="/device-compare/account/update"
+            element={<UpdateAccount />}
+          />
           <Route path="/device-compare/home" element={<Home />} />
           <Route
             path="/device-compare/filter/products/:deviceType"
@@ -44,10 +49,10 @@ function App() {
             path="/device-compare/products/compare"
             element={<CompareProducts />}
           />
-        </Route>
+      
 
         {/* Admin routes */}
-        <Route element={<ProtectedRoute allowedRole="admin" />}>
+  
           <Route
             path="/device-compare/admin/dashboard"
             element={<AdminPanel />}
@@ -64,7 +69,7 @@ function App() {
             path="/device-compare/admin/devices/register"
             element={<RegisterProduct />}
           />
-        </Route>
+   
 
         {/* 404 – ALWAYS LAST */}
         <Route path="*" element={<PageNotFound />} />

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../utils/AxiosInstance";
 import { useNavigate } from "react-router-dom";
 
 function AdminDevicesDashboard() {
@@ -82,13 +82,10 @@ function AdminDevicesDashboard() {
   useEffect(() => {
     const fetchDevices = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/device-compare/devices/all-products`,
-          {
-            params: { type: deviceType, brand, minPrice, maxPrice },
-            withCredentials: true,
-          },
-        );
+        const res = await axios.get(`/device-compare/devices/all-products`, {
+          params: { type: deviceType, brand, minPrice, maxPrice },
+          withCredentials: true,
+        });
 
         const devices = res.data;
 
@@ -111,10 +108,9 @@ function AdminDevicesDashboard() {
     if (!window.confirm("Delete this device?")) return;
 
     try {
-      await axios.delete(
-        `http://localhost:5000/device-compare/devices/delete/${id}`,
-        { withCredentials: true },
-      );
+      await axios.delete(`/device-compare/devices/delete/${id}`, {
+        withCredentials: true,
+      });
 
       setAllData((prev) => prev.filter((item) => item._id !== id));
       setVisibleData((prev) => prev.filter((item) => item._id !== id));

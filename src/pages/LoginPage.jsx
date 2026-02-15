@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../utils/AxiosInstance";
 import { Eye, EyeOff } from "lucide-react";
 
 function Login() {
@@ -15,11 +15,9 @@ function Login() {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/device-compare/user/login",
-        form,
-        { withCredentials: true }
-      );
+      const res = await axios.post(`/device-compare/user/login`, form, {
+        withCredentials: true,
+      });
 
       const { user } = res.data;
 
@@ -36,15 +34,15 @@ function Login() {
         try {
           // eslint-disable-next-line no-unused-vars
           const adminRes = await axios.post(
-            "http://localhost:5000/device-compare/admin/login",
+            `/device-compare/admin/login`,
             form,
-            { withCredentials: true }
+            { withCredentials: true },
           );
 
           return navigate("/device-compare/admin/description");
         } catch (adminErr) {
           return alert(
-            adminErr.response?.data?.message || "Admin login failed"
+            adminErr.response?.data?.message || "Admin login failed",
           );
         }
       }

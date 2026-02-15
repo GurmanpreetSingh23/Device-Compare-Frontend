@@ -6,7 +6,7 @@ import React, {
   useCallback,
 } from "react";
 import { useLocation, useParams, useNavigate } from "react-router";
-import axios from "axios";
+import axios from "../utils/AxiosInstance";
 import Header from "../components/Header";
 import { Loader2 } from "lucide-react";
 
@@ -46,10 +46,10 @@ function FilterResult() {
           ...location.state?.filterParams,
         };
 
-        const res = await axios.get(
-          "http://localhost:5000/device-compare/devices/all-products",
-          { params, withCredentials: true },
-        );
+        const res = await axios.get(`/device-compare/devices/all-products`, {
+          params,
+          withCredentials: true,
+        });
 
         console.log(`Page ${pageNum}:`, res.data);
 
